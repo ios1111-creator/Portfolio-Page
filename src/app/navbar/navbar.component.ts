@@ -1,4 +1,4 @@
-import {Component, Input, } from '@angular/core';
+import {Component, HostListener, Input,} from '@angular/core';
 import {ViewportScroller} from "@angular/common";
 
 @Component({
@@ -8,11 +8,14 @@ import {ViewportScroller} from "@angular/common";
 })
 export class NavbarComponent {
   @Input() aboutSectionId?: string;
-  @Input() experienceSectionId?:string
-  @Input() skillsSectionId?:string
-  @Input() projectsSectionId?:string
-  @Input() contactSectionId?:string
-  constructor(private viewportScroller: ViewportScroller) {}
+  @Input() experienceSectionId?: string
+  @Input() skillsSectionId?: string
+  @Input() projectsSectionId?: string
+  @Input() contactSectionId?: string
+  scrollPosition: number = 0;
+
+  constructor(private viewportScroller: ViewportScroller) {
+  }
 
   scrollToAbout() {
     if (this.aboutSectionId) {
@@ -20,26 +23,35 @@ export class NavbarComponent {
     }
   }
 
-  scrollToSkills(){
+  scrollToSkills() {
     if (this.skillsSectionId != null) {
       this.viewportScroller.scrollToAnchor(this.skillsSectionId)
     }
   }
 
-  scrollToExperience(){
+  scrollToExperience() {
     if (this.experienceSectionId) {
       this.viewportScroller.scrollToAnchor(this.experienceSectionId)
     }
   }
 
-  scrollToProjects(){
-    if (this.projectsSectionId){
+  scrollToProjects() {
+    if (this.projectsSectionId) {
       this.viewportScroller.scrollToAnchor(this.projectsSectionId)
 
     }
   }
-  scrollToContact(){
-    if (this.contactSectionId){
-    this.viewportScroller.scrollToAnchor(this.contactSectionId)
-  }}
+
+  scrollToContact() {
+    if (this.contactSectionId) {
+      this.viewportScroller.scrollToAnchor(this.contactSectionId)
+    }
+  }
+
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    const totalScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    this.scrollPosition = (window.pageYOffset / totalScroll) * 100;
+  }
 }
