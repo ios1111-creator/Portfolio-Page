@@ -19,6 +19,9 @@ export class NavbarComponent {
   constructor(private viewportScroller: ViewportScroller,
               private renderer: Renderer2,
               private el: ElementRef) {
+
+
+  constructor(private viewportScroller: ViewportScroller) {
   }
 
   scrollToAbout() {
@@ -72,4 +75,5 @@ export class NavbarComponent {
     this.lastScrollY = scrollY
   }
 
+  }
 }

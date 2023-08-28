@@ -1,10 +1,13 @@
-<form class="container row g-3 d-flex justify-content-center" [formGroup]="form" (ngSubmit)="submitForm()">
+<form class="container row g-3 d-flex justify-content-center mb-3" [formGroup]="form" (ngSubmit)="submitForm()">
   <h1 class="text-center">Contact</h1>
   <div class="col-md-4">
     <label for="firstName" class="form-label">First name</label>
     <input type="text" class="form-control" id="firstName" formControlName="firstName" name="firstName" maxlength="30" >
     <div class="valid-feedback" *ngIf="form.get('firstName')?.valid && !form.get('firstName')?.touched">
       Please enter a valid name.
+    <input type="text" class="form-control" id="firstName" formControlName="firstName" name="firstName">
+    <div class="invalid-feedback" *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
+      First name is required.
     </div>
   </div>
   <div class="col-md-4">
@@ -14,6 +17,9 @@
       <input type="email" class="form-control" id="email" formControlName="email" name="email" aria-describedby="inputGroupPrepend" maxlength="50" >
       <div class="invalid-feedback"  *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
         Please choose a username.
+      <input type="email" class="form-control" id="email" formControlName="email" name="email" aria-describedby="inputGroupPrepend">
+      <div class="invalid-feedback" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        Please enter a valid email address.
       </div>
     </div>
   </div>
@@ -22,10 +28,13 @@
     <textarea rows="4" class="form-control" id="message" formControlName="message" name="message" maxlength="1500" ></textarea>
     <div class="invalid-feedback" *ngIf="form?.get('message')?.invalid && form?.get('message')?.touched">
       First name is required.
+    <textarea rows="4" class="form-control" id="message" formControlName="message" name="message"></textarea>
+    <div class="invalid-feedback" *ngIf="form.get('message')?.invalid && form.get('message')?.touched">
+      Message is required.
     </div>
   </div>
 
   <div class="col-md-8">
-    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit form</button>
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit form</button>
   </div>
 </form>
