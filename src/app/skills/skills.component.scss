@@ -1,140 +1,108 @@
-// demo only
-
-$colors: (
-  "green": hsl(123, 47%, 74%),
-  "blue": hsl(210, 47%, 74%),
-  "orange": hsl(34, 93%, 77%),
-  "purple": hsl(231, 44%, 76%),
-  "yellow": hsl(54, 76%, 79%),
-  "brown": hsl(20, 41%, 69%),
-  "red": hsl(0, 59%, 76%),
-  "pink": hsl(295, 42%, 72%),
-  "white": hsl(0, 0%, 100%),
-);
-body {
-
-  font-family: system-ui;
+.orbit {
+  --size: 12rem;
   display: grid;
-  min-height: 100vh;
+  height: 100vh;
   place-content: center;
   overflow: hidden;
-}
-
-.orbit {
-  position: relative;
-  border: 1px solid darkgrey;
-  margin: 20px auto;
-  border-radius: 50%;
-  height: 30rem;
-  width: 30rem;
-  --size: 30rem;
-  --speed: 120s;
 
   .center-image {
     width: var(--size);
     position: relative;
-    z-index: 10;
-
-    .circle {
-      position: absolute;
-      border: 2px solid gray;
-      border-radius: 50%;
-    }
 
     img {
       position: absolute;
-      transition: opacity 500ms;
+      transition: opacity 350ms;
 
       &:not(:first-child):hover {
         opacity: 0;
       }
     }
   }
+  .circle {
+    position: absolute;
+    transform: translate(50%,50%);
+    border: 1px solid gray;
+    border-radius: 50%;
+    width: 500px;
+    height: 500px;
+  }
 
   ul {
-    display: grid;
-    place-items: center;
     width: var(--size);
     height: var(--size);
     position: relative;
     list-style: none;
-    //--icon-bg: var(--green-light);
-    --icon-bg: pink;
-
-    --text-bg: var(--green-dark);
     transform-origin: center;
-    animation: orbit var(--speed) linear infinite;
+    animation: orbit 40s linear infinite;
+    display: grid;
+    place-items: center;
+    left: 31%;
+    top: 33%;
 
     &:hover {
       animation-play-state: paused;
-      --orbit-play-state: paused;
+
+      & * {
+        animation-play-state: paused;
+      }
     }
   }
 
   li {
-    --icon-bg: pink;
-    --text-bg: blue;
-
-    position: absolute;
-    width: 4rem;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
+    background: var(--icon-bg);
     border-radius: 50%;
-    font-weight: 500;
     color: var(--white-light);
-    text-align: center;
+    font-weight: 500;
     line-height: 1;
+    overflow: hidden;
+    position: absolute;
+    width: 5rem;
     display: grid;
     place-items: center;
-
-    &:hover {
-      --throb-play-state: paused;
-    }
-
-    @for $i from 0 through 14 {
-      &:nth-child(#{$i + 1}) {
-        --throb-delay: #{500ms * $i};
-      }
-    }
-
+    //animation: throb 2s ease infinite alternate;
     & > * {
+      position: absolute;
+      animation: orbit 40s reverse linear infinite,
+    throb 1s 1000s ease infinite alternate;
+
+    }
+
+    img {
+      width: 80px;
+    }
+
+    p {
+      background: var(--orange-dark);
       width: 100%;
       height: 100%;
       display: grid;
-      place-items: center;
-      border-radius: inherit;
-
-      position: absolute;
-      animation: orbit var(--speed) linear reverse infinite,
-      throb 1s var(--throb-delay) ease-in-out infinite alternate;
-      animation-play-state: var(--orbit-play-state, running),
-      var(--throb-play-state, running);
-    }
-
-    > div {
-      background-color: var(--icon-bg);
-    }
-
-    > p {
-      background: var(--text-bg);
-      transition: opacity 500ms;
+      place-content: center;
       opacity: 0;
+      transition: opacity 500ms;
     }
 
-    &:hover > p {
+    &:hover p {
       opacity: 1;
     }
   }
 
+
+  li:first-child {
+    opacity: 1;
+    transform: translateX(300px);
+  }
+
   li:nth-child(1) {
-    --icon-bg: map-get($colors, "blue");
-    --text-bg: map-get($colors, "blue");
+    --icon-bg: var(--purple-light);
+    --text-bg: var(--purple-dark);
     transform: translate(15rem, 0rem);
   }
 
   li:nth-child(2) {
     --icon-bg: var(--green-light);
     --text-bg: var(--green-dark);
-    transform: translate(10rem, 10rem);
+    transform: translate(11rem, 11rem);
   }
 
   li:nth-child(3) {
@@ -158,31 +126,31 @@ body {
   li:nth-child(6) {
     --icon-bg: var(--yellow-light);
     --text-bg: var(--yellow-dark);
-    transform: translate(-11rem, -9rem);
+    transform: translate(-12rem, -10rem);
   }
 
   li:nth-child(7) {
     --icon-bg: var(--purple-light);
     --text-bg: var(--purple-dark);
-    transform: translate(0, -15rem);
+    transform: translate(-1rem, -16rem);
   }
 
   li:nth-child(8) {
     --icon-bg: var(--orange-light);
     --text-bg: var(--orange-dark);
-    transform: translate(14rem, -5rem)
+    transform: translate(14rem, -6rem)
   }
 
   li:nth-child(9) {
     --icon-bg: var(--orange-light);
     --text-bg: var(--orange-dark);
-    transform: translate(5rem, -14rem);
+    transform: translate(6rem, -15rem);
   }
 
   li:nth-child(10) {
     --icon-bg: var(--orange-light);
     --text-bg: var(--orange-dark);
-    transform: translate(-5rem, -14rem);
+    transform: translate(-7rem, -14rem);
   }
 
   li:nth-child(11) {
@@ -206,7 +174,7 @@ body {
   li:nth-child(14) {
     --icon-bg: var(--orange-light);
     --text-bg: var(--orange-dark);
-    transform: translate(10rem, -10rem);
+    transform: translate(11rem, -11rem);
   }
 
   li:nth-child(15) {
@@ -214,6 +182,7 @@ body {
     --text-bg: var(--orange-dark);
     transform: translate(14rem, 6rem);
   }
+
 
 }
 
@@ -223,14 +192,24 @@ body {
   }
 }
 
-@keyframes hold-position {
-  100% {
-    rotate: -1turn;
-  }
-}
-
 @keyframes throb {
   100% {
     scale: 1.05;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .orbit{
+    .circle {
+      transform: translate(35%,50%);
+
+    }
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .orbit{
+    .circle {
+      transform: translate(15%,50%);
+
+    }
   }
 }

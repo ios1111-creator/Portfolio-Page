@@ -2,7 +2,7 @@
   <h1 class="text-center">Contact</h1>
   <div class="col-md-4">
     <label for="firstName" class="form-label">First name</label>
-    <input type="text" class="form-control" id="firstName" formControlName="firstName" name="firstName"  >
+    <input type="text" class="form-control" id="firstName" formControlName="firstName" name="firstName" maxlength="30" >
     <div class="valid-feedback" *ngIf="form.get('firstName')?.valid && !form.get('firstName')?.touched">
       Please enter a valid name.
     </div>
@@ -11,7 +11,7 @@
     <label for="email" class="form-label">Email</label>
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">@</span>
-      <input type="email" class="form-control" id="email" formControlName="email" name="email" aria-describedby="inputGroupPrepend"  >
+      <input type="email" class="form-control" id="email" formControlName="email" name="email" aria-describedby="inputGroupPrepend" maxlength="50" >
       <div class="invalid-feedback"  *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
         Please choose a username.
       </div>
@@ -19,7 +19,7 @@
   </div>
   <div class="col-md-8">
     <label for="message" class="form-label">Message</label>
-    <textarea rows="4" class="form-control" id="message" formControlName="message" name="message"  ></textarea>
+    <textarea rows="4" class="form-control" id="message" formControlName="message" name="message" maxlength="1500" ></textarea>
     <div class="invalid-feedback" *ngIf="form?.get('message')?.invalid && form?.get('message')?.touched">
       First name is required.
     </div>

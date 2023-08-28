@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "src/app/skills/index";
+@media (max-width: 768px) {
+  .toast {
+    font-size: 14px;
+    border-radius: 8px;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
