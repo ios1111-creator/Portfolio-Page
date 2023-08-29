@@ -5,14 +5,14 @@
 </div>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top"
-     [class.nav--hidden]="isNavHidden">
+     [class.nav--hidden]="!isNavHidden">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
             aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbar">
+    <div class="collapse navbar-collapse" id="navbar" data-bs-toggle="collapse" data-bs-target="#navbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" (click)="scrollToAbout()">
           <a class="nav-link active" routerLink="/about">About</a>
@@ -33,9 +33,4 @@
     </div>
   </div>
 </nav>
-<div class="progress sticky-top">
-  <div class="progress-bar progress-bar-striped bg-warning " role="progressbar" [style.width.%]="scrollPosition"
-       aria-valuemin="0" aria-valuemax="100">{{ scrollPosition | number: '1.0-0'}}%
-  </div>
-</div>
 

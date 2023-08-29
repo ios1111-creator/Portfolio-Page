@@ -19,10 +19,8 @@ export class NavbarComponent {
   constructor(private viewportScroller: ViewportScroller,
               private renderer: Renderer2,
               private el: ElementRef) {
-
-
-  constructor(private viewportScroller: ViewportScroller) {
   }
+
 
   scrollToAbout() {
     if (this.aboutSectionId) {
@@ -55,9 +53,7 @@ export class NavbarComponent {
     }
   }
 
-
-  @HostListener('window:scroll', [])
-  onScroll(): void {
+  @HostListener('window:scroll', []) onScroll(): void {
     const totalScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     this.scrollPosition = (window.pageYOffset / totalScroll) * 100;
 
@@ -70,10 +66,8 @@ export class NavbarComponent {
       console.log('up')
       this.isNavHidden = false
       this.renderer.removeClass(this.el.nativeElement, 'nav--hidden')
-      this.renderer.removeClass(this.el.nativeElement,'sticky-top')
+      this.renderer.removeClass(this.el.nativeElement, 'sticky-top')
     }
     this.lastScrollY = scrollY
-  }
-
   }
 }
