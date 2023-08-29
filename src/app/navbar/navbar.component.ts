@@ -1,4 +1,4 @@
-import {Component, HostListener, Input,} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, Renderer2,} from '@angular/core';
 import {ViewportScroller} from "@angular/common";
 
 @Component({
@@ -13,6 +13,13 @@ export class NavbarComponent {
   @Input() projectsSectionId?: string
   @Input() contactSectionId?: string
   scrollPosition: number = 0;
+  isNavHidden: boolean = false
+  lastScrollY = 0;
+
+  constructor(private viewportScroller: ViewportScroller,
+              private renderer: Renderer2,
+              private el: ElementRef) {
+
 
   constructor(private viewportScroller: ViewportScroller) {
   }
@@ -53,5 +60,20 @@ export class NavbarComponent {
   onScroll(): void {
     const totalScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     this.scrollPosition = (window.pageYOffset / totalScroll) * 100;
+
+    let scrollY = window.scrollY
+    if (scrollY > this.lastScrollY) {
+      console.log('down')
+      this.isNavHidden = true
+      this.renderer.addClass(this.el.nativeElement, 'nav--hidden')
+    } else {
+      console.log('up')
+      this.isNavHidden = false
+      this.renderer.removeClass(this.el.nativeElement, 'nav--hidden')
+      this.renderer.removeClass(this.el.nativeElement,'sticky-top')
+    }
+    this.lastScrollY = scrollY
+  }
+
   }
 }

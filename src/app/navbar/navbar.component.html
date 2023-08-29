@@ -1,4 +1,11 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div #progress class="progress sticky-top" [class.progressBar]="!isNavHidden">
+  <div class="progress-bar progress-bar-striped bg-warning " role="progressbar" [style.width.%]="scrollPosition"
+       aria-valuemin="0" aria-valuemax="100">{{ scrollPosition | number: '1.0-0'}}%
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top"
+     [class.nav--hidden]="isNavHidden">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
