@@ -61,7 +61,7 @@ export class NavbarComponent {
     if (scrollY > this.lastScrollY) {
       console.log('down')
       this.isNavHidden = true
-      // this.renderer.addClass(this.el.nativeElement, 'nav--hidden')
+      this.renderer.addClass(this.el.nativeElement, 'nav--hidden')
     }else {
       console.log('up')
       this.isNavHidden = false
