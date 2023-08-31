@@ -1,7 +1,3 @@
-body {
-  --nav-height: 50px;
-}
-
 .nav--hidden {
   transform: translateY(-75px);
   transition: .25s ease-in-out;
@@ -10,12 +6,19 @@ body {
 .navbar {
   top: 16px;
   transition: .25s ease-in-out;
-
 }
 
 .progressBar {
-  top: 0;
   position: sticky;
+  top: 0;
   z-index: 1111;
 }
 
+.navbar-nav {
+  background-color: var(--bs-gray-100);
+  margin-left: -11px;
+  margin-top: 7px;
+  padding-left: 11px;
+  position: absolute;
+  width: -webkit-fill-available;
+}

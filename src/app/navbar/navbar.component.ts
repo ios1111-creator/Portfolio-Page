@@ -62,7 +62,7 @@ export class NavbarComponent {
       console.log('down')
       this.isNavHidden = true
       this.renderer.addClass(this.el.nativeElement, 'nav--hidden')
-    } else {
+    }else {
       console.log('up')
       this.isNavHidden = false
       this.renderer.removeClass(this.el.nativeElement, 'nav--hidden')
